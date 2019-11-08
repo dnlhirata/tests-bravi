@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ContactList.Domain.Entities;
+using ContactList.Domain.Interfaces;
+using ContactList.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
+namespace ContactList.Infra.Data.Repository
+{
+    public class PersonRepository : IPersonRepository
+    {
+        private readonly ContactListContext _context;
+
+        public PersonRepository(ContactListContext context)
+        {
+            this._context = context;
+        }
+
+        public void Add(Person obj)
+        {
+            _context.Set<Person>().Add(obj);
+            _context.SaveChanges();
+        }
+
+        public void Update(Person obj)
+        {
+            _context.Entry(obj).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void Remove(Person obj)
+        {
+            _context.Set<Person>().Remove(obj);
+        }
+
+        public Person GetById(long id)
+        {
+            return _context.Set<Person>().Find(id);
+        }
+
+        public IEnumerable<Person> GetByName(string name)
+        {
+            return _context.Person.Where(p => p.Name.Contains(name));
+        }
+
+        public IEnumerable<Person> GetAll()
+        {
+            return _context.Set<Person>().ToList();
+        }
+    }
+}
