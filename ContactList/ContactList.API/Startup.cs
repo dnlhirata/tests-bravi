@@ -35,6 +35,8 @@ namespace ContactList.API
             services.AddTransient<IPersonService, PersonService>();
             services.AddTransient<IPhoneService, PhoneService>();
             services.AddTransient<IEmailService, EmailService>();
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +48,8 @@ namespace ContactList.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(option => option.AllowAnyOrigin());;
 
             app.UseRouting();
 

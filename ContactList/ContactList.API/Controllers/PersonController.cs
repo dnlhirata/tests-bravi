@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactList.Domain.Entities;
 using ContactList.Domain.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactList.API.Controllers
 {
+    [EnableCors("AllowSpecificOrigin")]
     [Route("contact-list")]
     [ApiController]
     public class PersonController : ControllerBase
@@ -24,6 +26,7 @@ namespace ContactList.API.Controllers
             this._emailService = emailService;
         }
 
+        
         [HttpPost("adicionar")]
         public IActionResult Post([FromBody] Person person)
         {
@@ -35,6 +38,19 @@ namespace ContactList.API.Controllers
             catch (ArgumentException ex)
             {
                 return NotFound(ex);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                return new ObjectResult(_personService.GetAll());
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex);
             }
         }
     }
