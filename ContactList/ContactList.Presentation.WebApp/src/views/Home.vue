@@ -1,10 +1,11 @@
 <template>
     <div class="home">
-        <h1>{{ title }}</h1>
+        <h1>TITLE</h1>
+        <a v-on:click="addNewContact">Adicionar novo contato</a>
         <ul>
-            <!--<li v-for="contact of contacts">
+            <li v-for="contact of contacts" v-bind:key="contact.id">
                 <p>{{ contact.name }}</p>
-            </li>-->
+            </li>
         </ul>
     </div>
 </template>
@@ -13,20 +14,23 @@
     import ContactService from '@/services/api-services/contact-service.js';
 
     export default {
-        name: 'Home',
-        props: {
-            title: String
-        },
 
-        data() {
+        data: function() {
             return {
-                contacts: []
+                contacts: [],
+                addedId: ""
             }            
         },
 
-        created() {            
-            ContactService.addNewContact(this, 'Daniel', null, null);
-                
+        created: function() {
+            ContactService.getAllContacts()
+                .then(response => this.contacts = response.data);
+        },
+
+        methods: {
+            addNewContact: function () {
+                this.$router.push('/adicionar-novo-contato')
+            }
         }
     };
 </script>

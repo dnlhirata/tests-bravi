@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactList.API.Controllers
 {
-    [EnableCors("AllowSpecificOrigin")]
     [Route("contact-list")]
     [ApiController]
     public class PersonController : ControllerBase
@@ -27,7 +26,7 @@ namespace ContactList.API.Controllers
         }
 
         
-        [HttpPost("adicionar")]
+        [HttpPost("Adicionar")]
         public IActionResult Post([FromBody] Person person)
         {
             try
@@ -41,7 +40,7 @@ namespace ContactList.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetAllContacts")]
         public IActionResult Get()
         {
             try

@@ -1,15 +1,16 @@
+import httpRequest from '@/services/httpRequest-service.js';
+
 class ContactService {
-    addNewContact(client, name, phones, emails) {
-        client.$http.post('https://localhost:44314/contact-list/adicionar',
+    addNewContact(name) {
+        return httpRequest.axios.post('/Adicionar',
             {
-                name: name,
-                phones: phones,
-                emails: emails
-            });
+                name: name
+    }
+        );
     }
 
-    getAllContacts(client) {
-        return client.$http.get('https://localhost:44314/contact-list');
+    getAllContacts() {
+        return httpRequest.axios.get('/GetAllContacts');
     }
 }
 

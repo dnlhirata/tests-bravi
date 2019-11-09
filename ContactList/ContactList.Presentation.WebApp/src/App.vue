@@ -1,16 +1,21 @@
 <template>
     <div id="app">
-        <Home title="Contact List" />
+        <header>
+            <StructureHeader />
+        </header>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Home from './views/Home.vue';
+    import Home from '@/views/home.vue';
+    import StructureHeader from '@/components/structure/header.vue';
 
     export default {
         name: 'app',
         components: {
-            Home
+            Home,
+            StructureHeader
         }
     };
 </script>
