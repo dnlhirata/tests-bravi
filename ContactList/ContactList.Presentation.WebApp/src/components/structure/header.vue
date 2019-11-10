@@ -1,7 +1,9 @@
 <template>
     <div>
-        <nav :class="headerFloatMode ? 'nav-float fade-in-down' : 'fade-in'">
+        <nav>
             <div class="box-nav">
+            <a href="http://localhost:1337/">Contact List</a>
+            <a href="http://localhost:1337/add-new-contact">Adicionar novo contato</a>
             </div>
         </nav>
     </div>
@@ -15,7 +17,7 @@
         height: inherit;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         margin: 0px auto 0px auto;
     }
 </style>

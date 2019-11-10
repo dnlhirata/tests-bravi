@@ -1,10 +1,9 @@
 <template>
     <div class="home">
         <h1>TITLE</h1>
-        <a v-on:click="addNewContact">Adicionar novo contato</a>
         <ul>
             <li v-for="contact of contacts" v-bind:key="contact.id">
-                <p>{{ contact.name }}</p>
+                <a v-on:click="showContact(contact.id)">{{ contact.name }}</a>
             </li>
         </ul>
     </div>
@@ -28,8 +27,8 @@
         },
 
         methods: {
-            addNewContact: function () {
-                this.$router.push('/adicionar-novo-contato')
+            showContact: function (id) {
+                this.$router.push('contact/' + id)
             }
         }
     };

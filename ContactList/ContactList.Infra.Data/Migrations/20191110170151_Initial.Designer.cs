@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ContactList.Infra.Data.Migrations
 {
     [DbContext(typeof(ContactListContext))]
-    [Migration("20191107195344_Initial")]
+    [Migration("20191110170151_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,18 +28,10 @@ namespace ContactList.Infra.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("PersonId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("PersonalEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProfessionalEmail")
+                    b.Property<string>("EmailAddress")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Email");
                 });
@@ -51,11 +43,21 @@ namespace ContactList.Infra.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<long?>("EmailId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<long?>("PhoneId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EmailId");
+
+                    b.HasIndex("PhoneId");
 
                     b.ToTable("Person");
                 });
@@ -67,37 +69,26 @@ namespace ContactList.Infra.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<bool>("IsProfessional")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("IsWhatsApp")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Number")
                         .HasColumnType("text");
 
-                    b.Property<long?>("PersonId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Phone");
                 });
 
-            modelBuilder.Entity("ContactList.Domain.Entities.Email", b =>
+            modelBuilder.Entity("ContactList.Domain.Entities.Person", b =>
                 {
-                    b.HasOne("ContactList.Domain.Entities.Person", null)
-                        .WithMany("Emails")
-                        .HasForeignKey("PersonId");
-                });
+                    b.HasOne("ContactList.Domain.Entities.Email", "Email")
+                        .WithMany()
+                        .HasForeignKey("EmailId");
 
-            modelBuilder.Entity("ContactList.Domain.Entities.Phone", b =>
-                {
-                    b.HasOne("ContactList.Domain.Entities.Person", null)
-                        .WithMany("Phones")
-                        .HasForeignKey("PersonId");
+                    b.HasOne("ContactList.Domain.Entities.Phone", "Phone")
+                        .WithMany()
+                        .HasForeignKey("PhoneId");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,7 +12,7 @@ namespace ContactList.Infra.Data.Context
         public ContactListContext() : base() { }
         public ContactListContext(string connectionString) : base(){_connectionString = connectionString;}
         public ContactListContext(DbContextOptions options) : base(options){}
-        private readonly string _connectionString;
+        private readonly string _connectionString = "Host=localhost;Database=postgres;Username=postgres;Password=admin";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

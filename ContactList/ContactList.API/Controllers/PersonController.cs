@@ -40,6 +40,19 @@ namespace ContactList.API.Controllers
             }
         }
 
+        [HttpGet("Contact/{id}")]
+        public IActionResult Get(long id)
+        {
+            try
+            {
+                return new ObjectResult(_personService.GetById(id));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
         [HttpGet("GetAllContacts")]
         public IActionResult Get()
         {
