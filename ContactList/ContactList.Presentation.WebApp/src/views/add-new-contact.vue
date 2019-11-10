@@ -10,7 +10,7 @@
              <InputCheckbox v-model="isWhatsApp"/>
         </div>
         <div>
-            <AddButton @click="addContact">Confirm</AddButton>
+            <CommonButton @click="addContact">Confirm</CommonButton>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@
     import InputEmail from '@/components/inputs/input-email.vue'
     import InputPhoneNumber from '@/components/inputs/input-phone-number.vue';
     import InputCheckbox from '@/components/inputs/input-checkbox.vue';
-    import ConfirmButton from '@/components/buttons/confirm-contact.vue'
+    import CommonButton from '@/components/buttons/common-button.vue'
     import ContactService from '@/services/api-services/contact-service.js'
 
     export default {
@@ -39,7 +39,7 @@
             InputEmail,
             InputPhoneNumber,
             InputCheckbox,
-            ConfirmButton
+            CommonButton
         },
 
         methods: {

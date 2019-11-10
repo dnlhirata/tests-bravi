@@ -65,5 +65,33 @@ namespace ContactList.API.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpPut("UpdateContact")]
+        public IActionResult Put(Person obj)
+        {
+            try
+            {
+                _personService.Update(obj);
+                return new ObjectResult(obj.Id);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpDelete("DeleteContact")]
+        public IActionResult Delete(Person obj)
+        {
+            try
+            {
+                _personService.Delete(obj);
+                return new ObjectResult(obj.Id);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

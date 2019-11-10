@@ -10,7 +10,8 @@
              <InputCheckbox v-model="isWhatsApp"/>
         </div>
         <div>
-            <!--<ConfirmButton @click="addContact">Confirm</ConfirmButton>-->
+            <CommonButton @click="updateContact">Update</CommonButton>
+            <CommonButton @click="deleteContact">Delete</CommonButton>
         </div>
     </div>
 </template>
@@ -20,16 +21,14 @@
     import InputFormEmail from '@/views/input-form-email.vue'
     import InputFormPhone from '@/views/input-form-phone.vue';
     import InputCheckbox from '@/components/inputs/input-checkbox.vue';
-    import ConfirmButton from '@/components/buttons/confirm-contact.vue'
+    import CommonButton from '@/components/buttons/common-button.vue'
     import ContactService from '@/services/api-services/contact-service.js'
 
     export default {
 
         data() {
             return {
-                name: "",
-                email: "",
-                phoneNumber: "",
+                contact: {},
                 isWhatsApp: false,
                 preInputName: "",
                 preInputEmail: "",
@@ -45,7 +44,7 @@
             InputFormEmail,
             InputFormPhone,
             InputCheckbox,
-            ConfirmButton
+            CommonButton
         },
 
         mounted() {
@@ -57,12 +56,27 @@
                 let self = this;
                 ContactService.getContact(id)
                     .then(function (response) {
+                        self.contact = response.data
                         self.contactName = response.data.name;
                         self.contactEmail = response.data.email.emailAddress;
                         self.contactPhone = response.data.phone.number;
                         self.isWhatsApp = response.data.phone.isWhatsApp;
                 });
             },
+            
+            updateContact: function() {
+                this.contact.name = this.contactName;
+                this.contact.email.emailAddress = this.contactEmail;
+                this.contact.phone.number = this.contactPhone;
+                this.contact.phone.isWhatsApp = this.isWhatsApp;
+
+                ContactService.updateContact(this.contact);
+            },
+
+            deleteContact: function () {
+                ContactService.deleteContact(this.contact);
+                this.$router.push('/')
+            }
         }
     };
 </script>

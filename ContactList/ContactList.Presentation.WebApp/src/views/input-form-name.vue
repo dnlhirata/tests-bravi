@@ -1,5 +1,5 @@
 <template>
-    <InputName placeholder="Type contact name" v-model="name"></InputName>
+    <InputName placeholder="Type contact name" v-model="name" @input="emitValue"></InputName>
 </template>
 
 <script>
@@ -22,6 +22,13 @@
             return {
                 name: "",
             }
+        },
+
+        methods: {
+            emitValue: function () {
+                this.error = false;
+                this.$emit('input', this.name);
+            },
         }
     }
 </script>

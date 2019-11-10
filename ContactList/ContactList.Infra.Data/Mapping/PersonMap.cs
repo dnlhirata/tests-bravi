@@ -4,6 +4,7 @@ using System.Text;
 using ContactList.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
 
 namespace ContactList.Infra.Data.Mapping
 {

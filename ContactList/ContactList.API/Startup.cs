@@ -49,7 +49,7 @@ namespace ContactList.API
 
             app.UseHttpsRedirection();
 
-            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader());;
+            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());;
 
             app.UseRouting();
 

@@ -33,6 +33,7 @@ namespace ContactList.Infra.Data.Repository
         public void Remove(Person obj)
         {
             _context.Set<Person>().Remove(obj);
+            _context.SaveChanges();
         }
 
         public Person GetById(long id)

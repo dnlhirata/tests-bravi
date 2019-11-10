@@ -11,6 +11,10 @@ class ContactService {
         );
     }
 
+    updateContact(contact) {
+        return httpRequest.axios.put('/UpdateContact', contact);
+    }
+
     getContact(id) {
         return httpRequest.axios.get('Contact/' + id);
     }
@@ -18,6 +22,12 @@ class ContactService {
     getAllContacts() {
         return httpRequest.axios.get('/GetAllContacts');
     }
+
+    deleteContact(contact) {
+        return httpRequest.axios.delete('/DeleteContact', { data: contact });
+    }
+
+    
 }
 
 export default new ContactService();
