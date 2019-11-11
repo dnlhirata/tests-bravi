@@ -17,7 +17,7 @@
         height: inherit;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         margin: 0px auto 0px auto;
     }
 </style>

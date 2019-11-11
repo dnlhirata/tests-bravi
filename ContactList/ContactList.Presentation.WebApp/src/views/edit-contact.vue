@@ -3,15 +3,15 @@
         <h4 class="header-text">Fill in the details to add a new contact</h4>
         <div>
             <InputFormName :preInputName="preInputName" v-model="contactName"/>
-            <InputFormEmail :preInputEmail="preInputEmail" v-model="contactEmail"/>
         </div>    
         <div>
-             <InputFormPhone :preInputEmail="preInputPhone" v-model="contactPhone"/>
-             <InputCheckbox v-model="isWhatsApp"/>
+            <InputFormEmail :preInputEmail="preInputEmail" v-model="contactEmail"/>
+            <InputFormPhone :preInputEmail="preInputPhone" v-model="contactPhone"/>
+            <InputCheckbox v-model="isWhatsApp">The phone number is a WhatsApp number?</InputCheckbox>
         </div>
         <div>
-            <CommonButton @click="updateContact">Update</CommonButton>
-            <CommonButton @click="deleteContact">Delete</CommonButton>
+            <UpdateButton @click="updateContact">Update</UpdateButton>
+            <DeleteButton @click="deleteContact">Delete</DeleteButton>
         </div>
     </div>
 </template>
@@ -21,7 +21,8 @@
     import InputFormEmail from '@/views/input-form-email.vue'
     import InputFormPhone from '@/views/input-form-phone.vue';
     import InputCheckbox from '@/components/inputs/input-checkbox.vue';
-    import CommonButton from '@/components/buttons/common-button.vue'
+    import UpdateButton from '@/components/buttons/confirm-button.vue'
+    import DeleteButton from '@/components/buttons/delete-button.vue'
     import ContactService from '@/services/api-services/contact-service.js'
 
     export default {
@@ -44,7 +45,8 @@
             InputFormEmail,
             InputFormPhone,
             InputCheckbox,
-            CommonButton
+            UpdateButton,
+            DeleteButton
         },
 
         mounted() {
@@ -65,17 +67,28 @@
             },
             
             updateContact: function() {
-                this.contact.name = this.contactName;
-                this.contact.email.emailAddress = this.contactEmail;
+                let self = this;
+                self.contact.name = self.contactName;
+                self.contact.email.emailAddress = self.contactEmail;
                 this.contact.phone.number = this.contactPhone;
                 this.contact.phone.isWhatsApp = this.isWhatsApp;
 
-                ContactService.updateContact(this.contact);
+                
+                ContactService.updateContact(this.contact)
+                    .then(function () {
+                        self.$router.push('/');
+                        location.reload();
+                    });
             },
 
             deleteContact: function () {
-                ContactService.deleteContact(this.contact);
-                this.$router.push('/')
+                let self = this;
+                ContactService.deleteContact(this.contact)
+                    .then(function () {
+                        self.$router.push('/');
+                        location.reload();
+                    });
+                
             }
         }
     };

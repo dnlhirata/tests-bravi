@@ -1,5 +1,5 @@
 <template>
-    <button @click="onClick"></button>
+    <button @click="onClick">Confirm</button>
 </template>
 
 <script>
@@ -12,5 +12,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+     @import "base.less";
+
+    button {
+        color: green;
+     }
 </style>

@@ -27,7 +27,7 @@
         methods: {
             emitValue: function () {
                 this.error = false;
-                this.$emit('input', this.name);
+                this.$emit('input', this.email);
             },
         }
     }

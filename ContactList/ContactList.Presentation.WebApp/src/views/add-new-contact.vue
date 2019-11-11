@@ -2,53 +2,72 @@
     <div>
         <h4 class="header-text">Fill in the details to add a new contact</h4>
         <div>
-            <InputFormName ref="input" :preInputName:="preInputName" v-model="contactInputName"/>
-            <InputEmail v-model="email" placeholder="Type contact email"/>
+            <InputFormName  :preInputName="preInputName" v-model="contactName"/>
+            <InputFormEmail :preInputEmail="preInputEmail" v-model="contactEmail"/>
         </div>    
         <div>
-             <InputPhoneNumber v-model="phoneNumber" placeholder="Type contact phone number"/>
-             <InputCheckbox v-model="isWhatsApp"/>
+             <InputFormPhone :preInputEmail="preInputPhone" v-model="contactPhone"/>
+             <InputCheckbox v-model="isWhatsApp">The phone number is a WhatsApp number?</InputCheckbox>
         </div>
         <div>
-            <CommonButton @click="addContact">Confirm</CommonButton>
+            <ConfirmButton @click="addContact">Confirm</ConfirmButton>
         </div>
     </div>
 </template>
 
 <script>
     import InputFormName from '@/views/input-form-name.vue'
-    import InputEmail from '@/components/inputs/input-email.vue'
-    import InputPhoneNumber from '@/components/inputs/input-phone-number.vue';
+    import InputFormEmail from '@/views/input-form-email.vue'
+    import InputFormPhone from '@/views/input-form-phone.vue';
     import InputCheckbox from '@/components/inputs/input-checkbox.vue';
-    import CommonButton from '@/components/buttons/common-button.vue'
+    import ConfirmButton from '@/components/buttons/confirm-button.vue'
     import ContactService from '@/services/api-services/contact-service.js'
 
     export default {
 
         data() {
             return {
-                name: "",
-                email: "",
-                phoneNumber: "",
+                contactName: "",
+                contactEmail: "",
+                contactPhone: "",
+                preInputName: "",
+                preInputEmail: "",
+                preInputPhone: "",
                 isWhatsApp: false,
             }
         },
 
         components: {
             InputFormName,
-            InputEmail,
-            InputPhoneNumber,
+            InputFormEmail,
+            InputFormPhone,
             InputCheckbox,
-            CommonButton
+            ConfirmButton
         },
 
         methods: {
-            addContact: function (){                
+            addContact: function (){    
                 let self = this;
 
-                let phone = { number: self.phoneNumber, isWhatsApp: self.isWhatsApp }
-                let email = { emailAddress: self.email }
-                ContactService.addNewContact(self.name, phone, email);
+                if (self.contactName == "") {
+                    return;
+                }
+                
+                if (self.contactPhone == "") {
+                    return;
+                }
+
+                if (self.contactEmail == "") {
+                    return
+                }
+
+                let phone = { number: this.contactPhone, isWhatsApp: this.isWhatsApp }
+                let email = { emailAddress: this.contactEmail }
+                ContactService.addNewContact(self.contactName, phone, email)
+                    .then(function () {
+                        self.$router.push('/');
+                        location.reload();
+                    });
             }
         }
     };

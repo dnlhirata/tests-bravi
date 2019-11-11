@@ -28,14 +28,14 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/contact-list",
+      "httpPort": 52173,
+      "useSSL": true,
+      "sslPort": 44310,
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
         "ASPNETCORE_HTTPS_PORT": "44310"
-      },
-      "httpPort": 52173,
-      "useSSL": true,
-      "sslPort": 44310
+      }
     }
   }
 }

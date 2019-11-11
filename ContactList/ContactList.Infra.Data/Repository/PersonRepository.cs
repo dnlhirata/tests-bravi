@@ -26,7 +26,7 @@ namespace ContactList.Infra.Data.Repository
 
         public void Update(Person obj)
         {
-            _context.Entry(obj).State = EntityState.Modified;
+            _context.Person.Update(obj);
             _context.SaveChanges();
         }
 
@@ -51,7 +51,10 @@ namespace ContactList.Infra.Data.Repository
 
         public IEnumerable<Person> GetAll()
         {
-            return _context.Set<Person>().ToList();
+            return _context.Person
+                .Include(p => p.Phone)
+                .Include(p => p.Email)
+                .ToList();
         }
     }
 }

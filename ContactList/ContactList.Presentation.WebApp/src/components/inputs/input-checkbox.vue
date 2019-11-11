@@ -1,5 +1,8 @@
 <template>
-    <input type="checkbox" :checked="value" @change="updateSelf($event.target.checked)" @click="click"/>
+    <div>
+        <input type="checkbox" :checked="value" @change="updateSelf($event.target.checked)" @click="click">
+        <label><slot /></label>
+    </div>
 </template>
 
 <script>
@@ -19,4 +22,7 @@
 </script>
 
 <style scoped>
+    input {
+        margin-bottom: 10px;
+    }
 </style>

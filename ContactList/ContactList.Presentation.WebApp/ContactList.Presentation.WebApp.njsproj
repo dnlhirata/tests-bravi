@@ -33,7 +33,9 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\buttons\common-button.vue">
+    <Content Include="src\components\buttons\base.less" />
+    <Content Include="src\components\buttons\delete-button.vue" />
+    <Content Include="src\components\buttons\confirm-button.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\buttons\base.js" />
