@@ -2,8 +2,8 @@
     <div>
         <nav>
             <div class="box-nav">
-            <a href="http://localhost:1337/">Contact List</a>
-            <a href="http://localhost:1337/add-new-contact">Adicionar novo contato</a>
+            <a href="http://localhost:8080/">Contact List</a>
+            <a href="http://localhost:8080/add-new-contact">Adicionar novo contato</a>
             </div>
         </nav>
     </div>

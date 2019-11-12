@@ -85,6 +85,7 @@
     <Content Include="src\views\input-form-phone.vue">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="webapp.dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />

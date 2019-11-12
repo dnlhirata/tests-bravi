@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Pre
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ContactList.Presentation.WebApp", "ContactList.Presentation.WebApp\ContactList.Presentation.WebApp.njsproj", "{2D3A61CA-D95E-44EF-A60E-FEBDDEB0F0E5}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E542C4BE-5B7E-43E8-B2BC-E22EBB8FA7ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{2D3A61CA-D95E-44EF-A60E-FEBDDEB0F0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3A61CA-D95E-44EF-A60E-FEBDDEB0F0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3A61CA-D95E-44EF-A60E-FEBDDEB0F0E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E542C4BE-5B7E-43E8-B2BC-E22EBB8FA7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E542C4BE-5B7E-43E8-B2BC-E22EBB8FA7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E542C4BE-5B7E-43E8-B2BC-E22EBB8FA7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E542C4BE-5B7E-43E8-B2BC-E22EBB8FA7ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

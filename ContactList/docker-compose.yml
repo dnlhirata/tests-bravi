@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - production-network
+
+  contactlist.api:
+    image: ${DOCKER_REGISTRY-}contactlistapi
+    build:
+      context: .
+      dockerfile: ./ContactList.API/api.dockerfile
+    depends_on:
+      - db
+    networks:
+      - production-network
+    ports:
+      - "52168:80"
+
+  web:
+    build:
+      context: .
+      dockerfile: ./Docker/webapp.dockerfile
+    image: dnlhirata/webapp
+    ports:
+      - "8080:80"
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    driver: bridge
