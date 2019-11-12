@@ -9,7 +9,7 @@ COPY ["ContactList.Service/ContactList.Service.csproj", "ContactList.Service/"]
 COPY ["ContactList.Domain/ContactList.Domain.csproj", "ContactList.Domain/"]
 COPY ["ContactList.Infra.Data/ContactList.Infra.Data.csproj", "ContactList.Infra.Data/"]
 RUN dotnet restore "ContactList.API/ContactList.API.csproj"
-COPY ../ContactList.API .
+COPY . .
 WORKDIR "/src/ContactList.API"
 RUN dotnet build "ContactList.API.csproj" -c Release -o /app/build
 
