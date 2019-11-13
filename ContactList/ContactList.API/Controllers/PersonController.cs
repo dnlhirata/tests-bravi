@@ -15,14 +15,10 @@ namespace ContactList.API.Controllers
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
-        private readonly IPhoneService _phoneService;
-        private readonly IEmailService _emailService;
 
-        public PersonController(IPersonService personService, IPhoneService phoneService, IEmailService emailService)
+        public PersonController(IPersonService personService)
         {
             this._personService = personService;
-            this._phoneService = phoneService;
-            this._emailService = emailService;
         }
 
         

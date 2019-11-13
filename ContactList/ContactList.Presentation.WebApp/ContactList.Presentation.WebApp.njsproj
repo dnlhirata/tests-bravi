@@ -75,6 +75,7 @@
     <Content Include="src\services\api-services\contact-service.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\services\api-services\phone-service.js" />
     <Content Include="src\services\httpRequest-service.js">
       <SubType>Code</SubType>
     </Content>

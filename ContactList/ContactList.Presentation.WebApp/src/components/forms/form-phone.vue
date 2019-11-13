@@ -7,7 +7,7 @@
                 label-size="lg"
                 label-class="font-weight-bold pt-0"
                 class="mb-0">
-                <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index"></FormPhoneFields>
+                <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index"  @deletePhone="deletePhone"></FormPhoneFields>
             </b-form-group>
         </b-card>
     </div>
@@ -24,6 +24,18 @@
         },
     
         props: ['phones'],
+        
+        data() {
+            return {
+                phone: ""
+            }
+        },
+
+        methods: {
+            deletePhone: function (phone) {
+                this.$emit("deletePhone", phone);
+            }
+        }
     }
 </script>
 

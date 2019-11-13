@@ -32,7 +32,8 @@ namespace ContactList.Infra.Data.Repository
 
         public void Remove(Phone obj)
         {
-            _context.Set<Phone>().Remove(obj);
+            _context.Phone.Remove(obj);
+            _context.SaveChanges();
         }
 
         public Phone GetById(long id)

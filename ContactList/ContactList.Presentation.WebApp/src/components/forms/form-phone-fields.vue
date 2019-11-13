@@ -1,16 +1,20 @@
 <template>
-    <b-form inline class="spaced-field">
-        <label class="sr-only" for="inline-form-input-number">Number</label>
-        <b-input id="inline-form-input-name"
-                 class="mb-2 mr-sm-2 mb-sm-0"
-                 v-model="number"
-                 placeholder="Type phone number"></b-input>
+    <div>
+        <b-form inline class="spaced-field">
+            <label class="sr-only" for="inline-form-input-number">Number</label>
+            <b-input id="inline-form-input-name"
+                     class="mb-2 mr-sm-2 mb-sm-0"
+                     v-model="number"
+                     placeholder="Type phone number"></b-input>
 
-        <label class="sr-only" for="inline-form-input-type">Type</label>
-        <b-form-select class="mb-2 mr-sm-2 mb-sm-0 col-2" id="inline-form-input-username" v-model="phoneType" :options="phoneTypes"></b-form-select>
-        <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isWpp">Is WhatsApp?</b-form-checkbox>
-        <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isPrimary">Is primary number?</b-form-checkbox>
-    </b-form>
+            <label class="sr-only" for="inline-form-input-type">Type</label>
+            <b-form-select class="mb-2 mr-sm-2 mb-sm-0 col-2" id="inline-form-input-username" v-model="phoneType" :options="phoneTypes"></b-form-select>
+            <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isWpp">Is WhatsApp?</b-form-checkbox>
+            <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isPrimary">Is primary number?</b-form-checkbox>
+            <b-button class="delete-btn"><img class="icon-small" src="/images/delete-phone.png" @click="deletePhone(phone)"/></b-button>
+        </b-form>
+    <p v-if="message" class="error-message">{{ message }}</p>
+    </div>
 </template>
 
 <script>
@@ -29,7 +33,8 @@
                 number: "",
                 phoneType: "",
                 isWpp: false,
-                isPrimary: false
+                isPrimary: false,
+                message: "",
             }
         },
 
@@ -38,10 +43,40 @@
             this.isWpp = this.phone.isWhatsApp
             this.isPrimary = this.phone.isPrimary
             this.phoneType = this.phone.type
+        },
+
+        methods: {
+
+            deletePhone: function (phone) {
+                if(phone.isPrimary) {
+                    this.message = "You cannot delete primary number";
+                    return;
+                }
+                this.$emit('deletePhone', phone);
+            }
         }
     }
 </script>
 
 <style lang="less" scoped>
     @import "base.less";
+    @import "../../styles/colors.less";
+
+    .icon-small {
+        width: 16px;
+        height: 16px;
+    }
+
+    .delete-btn{
+        padding: 0;
+        border: none;
+        background: none;
+        
+    }
+
+    .error-message {
+      margin-top: 10px;
+      color: @ColorError;
+      font-size: 16px;
+    }
 </style>

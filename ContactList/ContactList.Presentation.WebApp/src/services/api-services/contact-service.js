@@ -26,8 +26,6 @@ class ContactService {
     deleteContact(contact) {
         return httpRequest.axios.delete('/DeleteContact', { data: contact });
     }
-
-
 }
 
 export default new ContactService();
