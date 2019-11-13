@@ -39,6 +39,13 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\buttons\base.js" />
+    <Content Include="src\components\forms\base.less" />
+    <Content Include="src\components\forms\form-phone-fields.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\forms\form-phone.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\inputs\base.js">
       <SubType>Code</SubType>
     </Content>
@@ -100,6 +107,7 @@
     <Folder Include="src\components\" />
     <Folder Include="src\components\inputs\" />
     <Folder Include="src\components\buttons\" />
+    <Folder Include="src\components\forms\" />
     <Folder Include="src\components\structure\" />
     <Folder Include="src\styles\" />
     <Folder Include="src\router\" />

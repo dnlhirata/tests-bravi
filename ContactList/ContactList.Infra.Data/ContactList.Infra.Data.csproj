@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20191107194759_Initial.Designer.cs" />
     <Compile Remove="Migrations\20191108015904_Phone and Email modified.cs" />
     <Compile Remove="Migrations\20191108015904_Phone and Email modified.Designer.cs" />
+    <Compile Remove="Migrations\20191113222758_Added phone type.cs" />
+    <Compile Remove="Migrations\20191113222758_Added phone type.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

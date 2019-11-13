@@ -33,7 +33,7 @@
             InputImage
         },
 
-        data: function () {
+        data() {
             return {
                 contacts: [],
             };
