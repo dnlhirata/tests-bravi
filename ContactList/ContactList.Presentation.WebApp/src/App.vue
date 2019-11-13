@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <title>Contact List</title>
         <header>
             <StructureHeader />
         </header>

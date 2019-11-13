@@ -38,10 +38,11 @@ namespace ContactList.Infra.Data.Repository
 
         public Person GetById(long id)
         {
-            return _context.Person.Where(p => p.Id == id)
+            var person = _context.Person.Where(p => p.Id == id)
                 .Include(p => p.Phone)
                 .Include(p => p.Email)
                 .FirstOrDefault();
+            return person;
         }
 
         public IEnumerable<Person> GetByName(string name)

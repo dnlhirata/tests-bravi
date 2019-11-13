@@ -43,12 +43,16 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\base.less" />
+    <Content Include="src\components\inputs\input-image.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\inputs\input-checkbox.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\input-email.vue">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\inputs\input-image" />
     <Content Include="src\components\inputs\input-phone-number.vue">
       <SubType>Code</SubType>
     </Content>
@@ -67,6 +71,7 @@
     <Content Include="src\services\httpRequest-service.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\styles\colors.less" />
     <Content Include="src\views\add-new-contact.vue">
       <SubType>Code</SubType>
     </Content>
@@ -85,17 +90,18 @@
     <Content Include="src\views\input-form-phone.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="webapp.dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
     <Folder Include="public\" />
+    <Folder Include="public\images\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
     <Folder Include="src\components\inputs\" />
     <Folder Include="src\components\buttons\" />
     <Folder Include="src\components\structure\" />
+    <Folder Include="src\styles\" />
     <Folder Include="src\router\" />
     <Folder Include="src\services\" />
     <Folder Include="src\services\api-services\" />

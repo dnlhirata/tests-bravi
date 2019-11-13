@@ -22,7 +22,13 @@ let router = new Router({
         {
             path: '/contact/:id',
             name: 'UpdateContact',
-            component: UpdateContact
+            component: UpdateContact,
+            props: {
+                id: {
+                    Type: String,
+                    required: true
+                }
+            }
         }
     ]
 });
