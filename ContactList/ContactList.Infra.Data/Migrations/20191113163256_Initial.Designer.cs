@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ContactList.Infra.Data.Migrations
 {
     [DbContext(typeof(ContactListContext))]
-    [Migration("20191113153620_Alter Person object to PersonId")]
-    partial class AlterPersonobjecttoPersonId
+    [Migration("20191113163256_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,9 @@ namespace ContactList.Infra.Data.Migrations
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
 
                     b.Property<long>("PersonId")
                         .HasColumnType("bigint");
@@ -62,6 +65,9 @@ namespace ContactList.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsWhatsApp")
                         .HasColumnType("boolean");

@@ -28,6 +28,9 @@ namespace ContactList.Infra.Data.Migrations
                     b.Property<string>("EmailAddress")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
+
                     b.Property<long>("PersonId")
                         .HasColumnType("bigint");
 
@@ -60,6 +63,9 @@ namespace ContactList.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsWhatsApp")
                         .HasColumnType("boolean");

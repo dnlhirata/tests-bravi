@@ -13,9 +13,9 @@
                     <td>
                         <a v-on:click="showContact(contact.id)" href="#">{{ contact.name }}</a>
                     </td>
-                    <td>{{ contact.email.emailAddress }}</td>
-                    <td>{{ contact.phone.number }}</td>
-                    <td>{{ contact.phone.isWhatsApp }}</td>
+                    <td>{{ contact.emails | primaryEmail | getEmailAddress }}</td>
+                    <td>{{ contact.phones | primaryPhone | getNumber }}</td>                  
+                    <td>{{ contact.phones | primaryPhone | getIsWhatsApp }}</td>                  
                     <td align="center"><button><img class="icon-small" src="/images/delete-icon.png" v-on:click="deleteContact(contact.id)" /></button></td>
                 </tr>
             </tbody>
@@ -40,9 +40,37 @@
         },
 
         created: function () {
-            ContactService.getAllContacts().then(
-                response => (this.contacts = response.data)
-            );
+            let self = this;
+            ContactService.getAllContacts()
+                .then(function (response) {
+                    self.contacts = response.data;
+                });
+        },
+
+        filters: {
+            primaryPhone: function (phones) {
+                return phones.find(function (phone) {
+                    return phone.isPrimary == true;
+                });
+            },
+            
+            getNumber: function (phone) {
+                return phone.number
+            },
+
+            getIsWhatsApp: function (phone) {
+                return phone.isWhatsApp;
+            },
+
+            primaryEmail: function (emails) {
+                return emails.find(function (email) {
+                    return email.isPrimary == true;
+                });
+            },
+            
+            getEmailAddress: function (email) {
+                return email.emailAddress;
+            }
         },
 
         methods: {
