@@ -3,15 +3,17 @@ using System;
 using ContactList.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactList.Infra.Data.Migrations
 {
     [DbContext(typeof(ContactListContext))]
-    partial class ContactListContextModelSnapshot : ModelSnapshot
+    [Migration("20191113055137_Added person object to phone and email")]
+    partial class Addedpersonobjecttophoneandemail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

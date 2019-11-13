@@ -32,15 +32,15 @@ namespace ContactList.Infra.Data.Repository
 
         public void Remove(Person obj)
         {
-            _context.Set<Person>().Remove(obj);
+            _context.Person.Remove(obj);
             _context.SaveChanges();
         }
 
         public Person GetById(long id)
         {
             var person = _context.Person.Where(p => p.Id == id)
-                .Include(p => p.Phone)
-                .Include(p => p.Email)
+                .Include(p => p.Phones)
+                .Include(p => p.Emails)
                 .FirstOrDefault();
             return person;
         }
@@ -52,10 +52,7 @@ namespace ContactList.Infra.Data.Repository
 
         public IEnumerable<Person> GetAll()
         {
-            return _context.Person
-                .Include(p => p.Phone)
-                .Include(p => p.Email)
-                .ToList();
+            return _context.Person.ToList();
         }
     }
 }

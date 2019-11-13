@@ -1,77 +1,101 @@
 <template>
   <div>
-    <h4 class="header-text">Fill in the details to add a new contact</h4>
-    <div>
-      <InputFormName :preInputName="preInputName" v-model="contactName" />
-      <InputFormEmail :preInputEmail="preInputEmail" v-model="contactEmail" />
-    </div>
-    <div>
-      <InputFormPhone :preInputEmail="preInputPhone" v-model="contactPhone" />
-      <InputCheckbox v-model="isWhatsApp">The phone number is a WhatsApp number?</InputCheckbox>
-    </div>
-    <p v-if="message" class="error-message">{{ message }}&nbsp;</p>
-    <div>
-      <ConfirmButton @click="addContact">Confirm</ConfirmButton>
+    <div v-for="(line, index) in lines" v-bind:key="index" class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-2">
+            <b-form-select
+              v-model="line.countryCode"
+              float-label="Country Code"
+              :options="countryPhoneCodes"
+            />
+          </div>
+          <div class="col-10">
+            <div>
+              <b-form-input
+                v-model="line.number"
+                float-label="Phone Number"
+                numeric-keyboard-toggle
+                placeholder="5551234567"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <b-form-select
+          v-model="line.phoneUsageType"
+          float-label="Type of Usage"
+          :options="phoneUsageTypes"
+        />
+      </div>
+
+      <div class="col-lg-2">
+        <div class="block float-right">
+          <b-button variant="success" @click="removeLine(index)"/>
+          <b-button variant="success" v-if="index + 1 === lines.length" @click="addLine"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import InputFormName from "@/views/input-form-name.vue";
-import InputFormEmail from "@/views/input-form-email.vue";
-import InputFormPhone from "@/views/input-form-phone.vue";
-import InputCheckbox from "@/components/inputs/input-checkbox.vue";
-import ConfirmButton from "@/components/buttons/confirm-button.vue";
-import ContactService from "@/services/api-services/contact-service.js";
-
 export default {
-  data() {
+
+  name: 'PhoneNumberLine',
+  data () {
     return {
-      contactName: "",
-      contactEmail: "",
-      contactPhone: "",
-      preInputName: "",
-      preInputEmail: "",
-      preInputPhone: "",
-      message: "",
-      isWhatsApp: false
-    };
-  },
-
-  components: {
-    InputFormName,
-    InputFormEmail,
-    InputFormPhone,
-    InputCheckbox,
-    ConfirmButton
-  },
-
-  methods: {
-    addContact: function() {
-      let self = this;
-
-      if (self.contactName == "") {
-        this.message = "Fill in the contact name.";
-        return;
-      }
-
-      if (self.contactPhone == "" || self.contactEmail == "") {
-        this.message =
-          "At least one contact type is needed (e-mail or phone number).";
-        return;
-      }
-
-      let phone = { number: this.contactPhone, isWhatsApp: this.isWhatsApp };
-      let email = { emailAddress: this.contactEmail };
-      ContactService.addNewContact(self.contactName, phone, email).then(
-        function() {
-          self.$router.push("/");
-          location.reload();
+      lines: [],
+      blockRemoval: true,
+      phoneUsageTypes: [
+        {
+          label: 'Home', value: 'home'
+        }, {
+          label: 'Work', value: 'work'
+        }, {
+          label: 'Mobile', value: 'mobile'
+        }, {
+          label: 'Fax', value: 'fax'
         }
-      );
+      ],
+      countryPhoneCodes: [
+        {
+          label: '+90',
+          value: '+90'
+        }, {
+          label: '+1',
+          value: '+1'
+        }
+      ]
     }
+  },
+  watch: {
+    lines () {
+      this.blockRemoval = this.lines.length <= 1
+    }
+  },
+  methods: {
+    addLine () {
+      let checkEmptyLines = this.lines.filter(line => line.number === null)
+      if (checkEmptyLines.length >= 1 && this.lines.length > 0) return
+      this.lines.push({
+        countryCode: null,
+        number: null,
+        phoneUsageType: null
+      })
+    },
+    removeLine (lineId) {
+      if (!this.blockRemoval) this.lines.splice(lineId, 1)
+    }
+  },
+  mounted () {
+    this.addLine()
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

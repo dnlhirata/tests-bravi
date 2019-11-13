@@ -8,5 +8,6 @@ namespace ContactList.Domain.Entities
     {
         public string Number { get; set; }
         public bool IsWhatsApp { get; set; }
+        public Person Person { get; set; }
     }
 }

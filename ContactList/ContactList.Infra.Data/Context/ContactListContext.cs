@@ -12,7 +12,7 @@ namespace ContactList.Infra.Data.Context
         public ContactListContext() : base() { }
         public ContactListContext(string connectionString) : base(){_connectionString = connectionString;}
         public ContactListContext(DbContextOptions options) : base(options){}
-        private readonly string _connectionString = "Host=localhost;Database=postgres;Username=postgres;Password=admin;Port:5432";
+        private readonly string _connectionString = "Host=localhost;Database=postgres;Username=postgres;Password=admin";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,6 +27,17 @@ namespace ContactList.Infra.Data.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>(new PersonMap().Configure);
+
+            modelBuilder.Entity<Phone>()
+                .HasOne(p => p.Person)
+                .WithMany(p => p.Phones)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Email>()
+                .HasOne(e => e.Person)
+                .WithMany(p => p.Emails)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 

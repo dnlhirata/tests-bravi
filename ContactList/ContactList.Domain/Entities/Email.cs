@@ -7,5 +7,6 @@ namespace ContactList.Domain.Entities
     public class Email : BaseEntity
     {
         public string EmailAddress { get; set; }
+        public Person Person { get; set; }
     }
 }
