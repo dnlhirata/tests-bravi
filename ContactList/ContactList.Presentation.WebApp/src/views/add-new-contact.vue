@@ -1,46 +1,32 @@
 <template>
-  <div>
-    <div v-for="(line, index) in lines" v-bind:key="index" class="row">
-      <div class="col-lg-6">
-        <div class="row">
-          <div class="col-2">
-            <b-form-select
-              v-model="line.countryCode"
-              float-label="Country Code"
-              :options="countryPhoneCodes"
-            />
-          </div>
-          <div class="col-10">
-            <div>
-              <b-form-input
-                v-model="line.number"
-                float-label="Phone Number"
-                numeric-keyboard-toggle
-                placeholder="5551234567"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="center">
+        <b-card bg-variant="light">
+            <b-form-group v-for="(line, index) in lines" v-bind:key="index"
+                label-cols-lg="1"
+                label="Phone Info"
+                label-size="lg"
+                label-class="font-weight-bold pt-0"
+                class="mb-0">
+                <b-form inline>
+                    <label class="sr-only" for="inline-form-input-number">Number</label>
+                    <b-input id="inline-form-input-name"
+                             class="mb-2 mr-sm-2 mb-sm-0"
+                             v-model="line.number"
+                             placeholder="Type phone number"></b-input>
 
-      <div class="col-lg-4">
-        <b-form-select
-          v-model="line.phoneUsageType"
-          float-label="Type of Usage"
-          :options="phoneUsageTypes"
-        />
-      </div>
+                    <label class="sr-only" for="inline-form-input-type">Type</label>
+                    <b-form-select class="mb-2 mr-sm-2 mb-sm-0 col-2" id="inline-form-input-username" v-model="line.phoneUsageType" :options="phoneTypes"></b-form-select>
 
-      <div class="col-lg-2">
-        <div class="block float-right">
-          <b-button variant="success" @click="removeLine(index)"/>
-          <b-button variant="success" v-if="index + 1 === lines.length" @click="addLine"/>
-        </div>
-      </div>
+                    <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0">Is WhatsApp?</b-form-checkbox>
+
+                    <b-input-group>
+                        <b-btn pill class="mr-sm-2 mb-sm-0" variant="success" v-if="index + 1 === lines.length" @click="addLine">-</b-btn>
+                        <b-btn pill variant="danger" @click="removeLine(index)">+</b-btn>
+                    </b-input-group>
+                </b-form>
+            </b-form-group>
+        </b-card>
     </div>
-  </div>
 </template>
 
 <script>
@@ -51,25 +37,15 @@ export default {
     return {
       lines: [],
       blockRemoval: true,
-      phoneUsageTypes: [
-        {
-          label: 'Home', value: 'home'
-        }, {
-          label: 'Work', value: 'work'
-        }, {
-          label: 'Mobile', value: 'mobile'
-        }, {
-          label: 'Fax', value: 'fax'
-        }
+      phoneTypes: [
+        { text: 'Home', value: 'home' },
+        { text: 'Work', value: 'work' },
+        { text: 'Mobile', value: 'mobile' },
+        { text: 'Fax', value: 'fax' }
       ],
-      countryPhoneCodes: [
-        {
-          label: '+90',
-          value: '+90'
-        }, {
-          label: '+1',
-          value: '+1'
-        }
+      dddCodes: [
+        { text: '11', value: '11'},
+        { text: '21', value: '21' }
       ]
     }
   },
@@ -100,6 +76,15 @@ export default {
 
 <style lang="less" scoped>
 @import "../styles/colors.less";
+
+.pageWidth {
+    width: 1256px;
+}
+
+.center {
+  margin: auto;
+  padding: 10px;
+}
 
 .header-text {
   font-size: 22px;

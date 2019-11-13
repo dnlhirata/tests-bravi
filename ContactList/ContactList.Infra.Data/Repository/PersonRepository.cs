@@ -52,7 +52,10 @@ namespace ContactList.Infra.Data.Repository
 
         public IEnumerable<Person> GetAll()
         {
-            return _context.Person.ToList();
+            return _context.Person
+                .Include(p => p.Phones)
+                .Include(p => p.Emails)
+                .ToList();
         }
     }
 }

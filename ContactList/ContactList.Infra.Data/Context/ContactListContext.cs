@@ -28,16 +28,6 @@ namespace ContactList.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>(new PersonMap().Configure);
 
-            modelBuilder.Entity<Phone>()
-                .HasOne(p => p.Person)
-                .WithMany(p => p.Phones)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Email>()
-                .HasOne(e => e.Person)
-                .WithMany(p => p.Emails)
-                .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 
