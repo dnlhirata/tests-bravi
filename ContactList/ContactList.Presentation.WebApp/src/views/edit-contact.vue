@@ -3,7 +3,7 @@
         <b-alert v-if="success" variant="success" show>Contact successfully updated </b-alert>
         <b-alert v-if="failure" variant="danger" show>Error on updating contact</b-alert>
         <h3 class="contact-name">{{ name }}</h3>
-        <FormPhone :phones="phones" :personId="contact.id" @deletePhone="deletePhone"></FormPhone>
+        <FormPhone :phones="phones" :personId="contact.id" @deletePhone="deletePhone" @finished="updateContact"></FormPhone>
         <FormEmail :emails="emails" :personId="contact.id" @deleteEmail="deleteEmail" @finished="updateContact"></FormEmail>
     </div>
 </template>
@@ -60,8 +60,7 @@
 
             updateContact: function () {
                 let self = this;
-                ContactService.updateContact(self.contact)
-                    .then(self.success = true);
+                ContactService.updateContact(self.contact);
             },
             
             deletePhone: function (phone) {

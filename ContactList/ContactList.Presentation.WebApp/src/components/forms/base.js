@@ -7,10 +7,6 @@ var base = {
         updateSelf: function (value) {
             this.$emit('input', value);
         },
-
-        updateSelect: function (value) {
-            this.$emit('select', value);
-        }
     }
 }
 

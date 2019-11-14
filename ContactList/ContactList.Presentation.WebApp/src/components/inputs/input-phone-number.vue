@@ -1,26 +1,22 @@
 <template>
-    <input type="text" :value="value" @keyup="updateSelf($event.target.value)"/>
+    <div>
+        <label class="sr-only" for="inline-form-input-phone-number">Number</label>
+        <b-input id="inline-form-input-phone-number"
+                 class="mb-2 mr-sm-2 mb-sm-0"
+                 placeholder="Type phone number"
+                 type="number" :value="value" @keyup="updateSelf($event.target.value)"></b-input>
+    </div>
 </template>
 
 <script>
-    import Cleave from 'cleave.js';
     import base from "@/components/inputs/base.js";
 
     export default {
 
         mixins: [base],
-
-        mounted: function () {
-            new Cleave(this.$el, {
-                numericOnly: true,
-                blocks: [0, 2, 0, 9],
-                delimiters: ["(", ")", " "]
-            });
-        }
     }
     
 </script>
 
 <style lang="less" scoped>
-    @import "base.less";
 </style>

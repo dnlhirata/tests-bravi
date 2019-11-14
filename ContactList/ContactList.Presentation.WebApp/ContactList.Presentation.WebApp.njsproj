@@ -57,16 +57,13 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\base.less" />
-    <Content Include="src\components\inputs\input-image.vue">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="src\components\inputs\input-checkbox-whats.vue" />
     <Content Include="src\components\inputs\input-checkbox.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\input-email.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\inputs\input-image" />
     <Content Include="src\components\inputs\input-phone-number.vue">
       <SubType>Code</SubType>
     </Content>
@@ -74,6 +71,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\select-email-type.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\inputs\select-phone-type.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\structure\header.vue">
@@ -102,15 +102,6 @@
     <Content Include="src\views\home.vue" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\views\input-form-email.vue">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\views\input-form-name.vue">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\views\input-form-phone.vue">
-      <SubType>Code</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />

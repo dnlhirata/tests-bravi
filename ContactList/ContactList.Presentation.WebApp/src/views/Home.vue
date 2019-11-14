@@ -25,13 +25,8 @@
 
 <script>
     import ContactService from "@/services/api-services/contact-service.js";
-    import InputImage from "@/components/inputs/input-image.vue";
 
     export default {
-
-        components: {
-            InputImage
-        },
 
         data() {
             return {

@@ -17,12 +17,9 @@
 
 <script>
 
-    import base from "@/components/inputs/base.js";
     import FormEmailFields from '@/components/forms/form-email-fields'
 
     export default {
-
-        mixins:[base],
 
         components: {
             FormEmailFields

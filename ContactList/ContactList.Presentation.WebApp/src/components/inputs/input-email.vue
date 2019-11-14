@@ -6,7 +6,6 @@
                  placeholder="Type email address"
                  type="email" :value="value" @keyup="updateSelf($event.target.value)"></b-input>
     </div>
-
 </template>
 
 <script>

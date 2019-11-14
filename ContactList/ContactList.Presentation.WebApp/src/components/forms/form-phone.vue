@@ -7,9 +7,10 @@
                 label-size="lg"
                 label-class="font-weight-bold pt-0"
                 class="mb-0">
-                <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index"  @deletePhone="deletePhone"></FormPhoneFields>
+                <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index" @deletePhone="deletePhone"></FormPhoneFields>
             </b-form-group>
-        <b-button size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>{{test}}
+        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
+        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>
         </b-card>
     </div>
 </template>
@@ -24,12 +25,11 @@
             FormPhoneFields
         },
     
-        props: ['phones'],
+        props: ['phones', 'personId'],
         
         data() {
             return {
                 phone: "",
-                
             }
         },
 
@@ -48,9 +48,14 @@
                     number: null,
                     type: null,
                     isWhatsApp: false,
-                    isPrimary: false
+                    isPrimary: false,
+                    personId: this.personId
                 })
             },
+
+            finished: function () {
+                this.$emit('finished')
+            }
         }
     }
 </script>
