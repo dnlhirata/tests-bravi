@@ -8,12 +8,12 @@
                      placeholder="Type phone number"></b-input>
 
             <label class="sr-only" for="inline-form-input-type">Type</label>
-            <b-form-select class="mb-2 mr-sm-2 mb-sm-0 col-2" id="inline-form-input-username" v-model="phoneType" :options="phoneTypes"></b-form-select>
+            <b-form-select class="mb-2 mr-sm-2 mb-sm-0 col-2" id="inline-form-input-type" v-model="phoneType" :options="phoneTypes"></b-form-select>
             <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isWpp">Is WhatsApp?</b-form-checkbox>
             <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="isPrimary">Is primary number?</b-form-checkbox>
-            <b-button class="delete-btn"><img class="icon-small" src="/images/delete-phone.png" @click="deletePhone(phone)"/></b-button>
+            <button class="delete-btn"><img class="icon-small" src="/images/delete-phone.png" @click="deletePhone(phone)"/></button>
         </b-form>
-    <p v-if="message" class="error-message">{{ message }}</p>
+        <p v-if="message" class="error-message">{{ message }}</p>
     </div>
 </template>
 
@@ -60,23 +60,4 @@
 
 <style lang="less" scoped>
     @import "base.less";
-    @import "../../styles/colors.less";
-
-    .icon-small {
-        width: 16px;
-        height: 16px;
-    }
-
-    .delete-btn{
-        padding: 0;
-        border: none;
-        background: none;
-        
-    }
-
-    .error-message {
-      margin-top: 10px;
-      color: @ColorError;
-      font-size: 16px;
-    }
 </style>

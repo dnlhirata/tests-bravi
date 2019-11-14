@@ -9,6 +9,7 @@
                 class="mb-0">
                 <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index"  @deletePhone="deletePhone"></FormPhoneFields>
             </b-form-group>
+        <b-button size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>
         </b-card>
     </div>
 </template>
@@ -33,7 +34,21 @@
 
         methods: {
             deletePhone: function (phone) {
+                if (phone.id == null) {
+                    this.phones.pop();
+                    return;
+                }
                 this.$emit("deletePhone", phone);
+            },
+            
+            addPhoneLine: function () {
+                this.phones.push(
+                {
+                    number: null,
+                    type: null,
+                    isWhatsApp: null,
+                    isPrimary: null
+                })
             }
         }
     }

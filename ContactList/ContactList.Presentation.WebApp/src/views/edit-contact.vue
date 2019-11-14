@@ -1,25 +1,33 @@
 <template>
     <div class="center">
-        <FormAddPhone :phones="phones" @deletePhone="deletePhone"></FormAddPhone>
+        <h3 class="contact-name">{{ name }}</h3>
+        <FormPhone :phones="phones" @deletePhone="deletePhone"></FormPhone>
+        <FormEmail :emails="emails" @deleteEmail="deleteEmail"></FormEmail>
     </div>
 </template>
 
 <script>
 
-    import FormAddPhone from '@/components/forms/form-phone.vue'
+    import FormPhone from '@/components/forms/form-phone.vue'
+    import FormEmail from '@/components/forms/form-email.vue'
     import ContactService from '@/services/api-services/contact-service.js';
     import PhoneService from '@/services/api-services/phone-service.js';
+    import EmailService from '@/services/api-services/email-service.js';
     
     export default {
 
         components: {
-            FormAddPhone
+            FormPhone,
+            FormEmail
         },
 
         data() {
             return {
+                name: "",
                 phones: [],
-                phone: {}
+                phone: {},
+                emails: {},
+                email: {}
             }
         },
 
@@ -32,16 +40,27 @@
                 let self = this;
                 ContactService.getContact(id)
                     .then(function (response) {
+                        self.name = response.data.name;
                         self.phones = response.data.phones
+                        self.emails = response.data.emails
                     });
             },
             
             deletePhone: function (phone) {
                 PhoneService.deletePhone(phone);
+            },
+
+            deleteEmail: function (email) {
+                EmailService.deleteEmail(email);
             }
         }
     }
 </script>
 
 <style scoped>
+
+    .contact-name {
+        margin-top: 10px;
+        text-align: center;
+    }
 </style>

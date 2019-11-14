@@ -40,6 +40,12 @@
     </Content>
     <Content Include="src\components\buttons\base.js" />
     <Content Include="src\components\forms\base.less" />
+    <Content Include="src\components\forms\form-email-fields.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\forms\form-email.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\forms\form-phone-fields.vue">
       <SubType>Code</SubType>
     </Content>
@@ -75,6 +81,9 @@
     <Content Include="src\services\api-services\contact-service.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\services\api-services\email-service" />
+    <Content Include="src\services\api-services\email-service.ja" />
+    <Content Include="src\services\api-services\email-service.js" />
     <Content Include="src\services\api-services\phone-service.js" />
     <Content Include="src\services\httpRequest-service.js">
       <SubType>Code</SubType>

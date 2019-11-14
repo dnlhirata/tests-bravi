@@ -32,7 +32,9 @@ namespace ContactList.Infra.Data.Repository
 
         public void Remove(Email obj)
         {
-            _context.Set<Email>().Remove(obj);
+            _context.Email.Remove(obj);
+            _context.SaveChanges();
+
         }
 
         public Email GetById(long id)
