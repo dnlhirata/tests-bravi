@@ -1,8 +1,5 @@
 <template>
-    <div>
-        <input type="checkbox" :checked="value" @change="updateSelf($event.target.checked)" @click="click">
-        <label><slot /></label>
-    </div>
+    <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="ck" @change="onChange">Is Primary?</b-form-checkbox>
 </template>
 
 <script>
@@ -11,10 +8,18 @@
     export default {
 
         mixins: [base],
+
+        props: ['primary'],
+
+        data() {
+            return {
+                ck: this.primary
+            }
+        },
         
         methods: {
-            click: function () {
-                this.$emit("click");
+            onChange: function (value) {
+                this.$emit("ckChange", value);
             }
         }
     }

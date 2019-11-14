@@ -1,18 +1,18 @@
 import httpRequest from '@/services/httpRequest-service.js';
 
 class ContactService {
-    addNewContact(name, phone, email) {
+    addNewContact(name, phones, emails) {
         return httpRequest.axios.post('/Adicionar',
             {
                 name: name,
-                phone: phone,
-                email: email
+                phones: phones,
+                emails: emails
             }
         );
     }
 
     updateContact(contact) {
-        return httpRequest.axios.put('/UpdateContact', contact);
+        return httpRequest.axios.put('/UpdateContact', contact );
     }
 
     getContact(id) {

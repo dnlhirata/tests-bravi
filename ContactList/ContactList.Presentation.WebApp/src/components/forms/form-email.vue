@@ -7,28 +7,32 @@
                 label-size="lg"
                 label-class="font-weight-bold pt-0"
                 class="mb-0">
-                <FormEmailFields v-for="(email, index) in emails" :email="email" :key="index"  @deleteEmail="deleteEmail"></FormEmailFields>
+                <FormEmailFields v-for="(email, index) in emails" :email="email" :key="index" @deleteEmail="deleteEmail"></FormEmailFields> 
             </b-form-group>
-        <b-button size="sm" variant="success" @click="addEmailLine">Add email</b-button>
+        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
+        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="success" @click="addEmailLine">Add email</b-button>
         </b-card>
     </div>
 </template>
 
 <script>
 
+    import base from "@/components/inputs/base.js";
     import FormEmailFields from '@/components/forms/form-email-fields'
 
     export default {
+
+        mixins:[base],
 
         components: {
             FormEmailFields
         },
     
-        props: ['emails'],
+        props: ['emails', 'personId'],
         
         data() {
             return {
-                email: ""
+                email: "",
             }
         },
 
@@ -37,8 +41,10 @@
                 if (email.id == null) {
                     this.emails.pop();
                     return;
+                } else {
+                    this.$emit("deleteEmail", email);
                 }
-                this.$emit("deleteEmail", email);
+                
             },
             
             addEmailLine: function () {
@@ -46,8 +52,13 @@
                 {
                     emailAddress: null,
                     type: null,
-                    isPrimary: null
+                    isPrimary: false,
+                    personId: this.personId
                 })
+            },
+
+            finished: function () {
+                this.$emit('finished')
             }
         }
     }

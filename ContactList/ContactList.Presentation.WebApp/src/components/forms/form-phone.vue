@@ -9,7 +9,7 @@
                 class="mb-0">
                 <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index"  @deletePhone="deletePhone"></FormPhoneFields>
             </b-form-group>
-        <b-button size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>
+        <b-button size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>{{test}}
         </b-card>
     </div>
 </template>
@@ -28,7 +28,8 @@
         
         data() {
             return {
-                phone: ""
+                phone: "",
+                
             }
         },
 
@@ -46,10 +47,10 @@
                 {
                     number: null,
                     type: null,
-                    isWhatsApp: null,
-                    isPrimary: null
+                    isWhatsApp: false,
+                    isPrimary: false
                 })
-            }
+            },
         }
     }
 </script>

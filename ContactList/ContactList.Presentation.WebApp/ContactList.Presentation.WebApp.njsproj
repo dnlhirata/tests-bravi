@@ -39,6 +39,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\buttons\base.js" />
+    <Content Include="src\components\forms\base.js" />
     <Content Include="src\components\forms\base.less" />
     <Content Include="src\components\forms\form-email-fields.vue">
       <SubType>Code</SubType>
@@ -70,6 +71,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\inputs\input-name.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\inputs\select-email-type.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\structure\header.vue">
