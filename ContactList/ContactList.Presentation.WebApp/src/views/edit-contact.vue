@@ -29,7 +29,7 @@
                 name: "",
                 phones: [],
                 phone: {},
-                emails: {},
+                emails: [],
                 email: {},
                 success: false,
                 failure: false,

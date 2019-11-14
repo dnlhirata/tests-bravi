@@ -9,7 +9,7 @@
                 class="mb-0">
                 <FormEmailFields v-for="(email, index) in emails" :email="email" :key="index" @deleteEmail="deleteEmail"></FormEmailFields> 
             </b-form-group>
-        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
+        <b-button v-if="$route.params.id" class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
         <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="success" @click="addEmailLine">Add email</b-button>
         </b-card>
     </div>
@@ -30,6 +30,12 @@
         data() {
             return {
                 email: "",
+            }
+        },
+        
+        created() {
+            if (this.emails.length == 0) {
+                this.addEmailLine();
             }
         },
 

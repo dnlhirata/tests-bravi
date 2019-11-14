@@ -9,7 +9,7 @@
                 class="mb-0">
                 <FormPhoneFields v-for="(phone, index) in phones" :phone="phone" :key="index" @deletePhone="deletePhone"></FormPhoneFields>
             </b-form-group>
-        <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
+        <b-button v-if="$route.params.id" class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="info" @click="finished">Done</b-button>
         <b-button class="mb-2 mr-sm-2 mb-sm-0" size="sm" variant="success" @click="addPhoneLine">Add phone</b-button>
         </b-card>
     </div>
@@ -30,6 +30,12 @@
         data() {
             return {
                 phone: "",
+            }
+        },
+
+        created() {
+            if (this.phones.length == 0) {
+                this.addPhoneLine();
             }
         },
 

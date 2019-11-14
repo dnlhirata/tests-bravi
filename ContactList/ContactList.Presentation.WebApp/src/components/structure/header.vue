@@ -1,9 +1,9 @@
 <template>
     <div class="header">
-        <a class="logo" href="http://localhost:80/">Contact List</a>
+        <router-link class="logo" :to="{name: 'Home'}">Contact List</router-link>
         <nav>
             <div class="links-right">
-                <a href="http://localhost:80/add-new-contact">Adicionar novo contato</a>
+                <router-link :to="{name: 'AddNewContact'}">Add new contact</router-link>
             </div>
         </nav>
     </div>
@@ -24,7 +24,7 @@
       font-weight: bold;
     }
     
-    .header a {
+    .header > nav > div > router-link {
       float: left;
       color: black;
       text-align: center;
